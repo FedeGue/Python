@@ -1,0 +1,46 @@
+print("Benvenuto nella tua nuova calcolatrice!")
+
+def menu_scelta(): #creo un menu che permette interazione utente
+    #non ha senso scrivere: (x,y,scelta_utente)
+    x = float(input("inserisci un numero: "))
+    y = float(input("inserisci un altro numero: "))
+    scelta_utente = input("seleziona un'operazione tra +, -, /, *: ")
+    return x, y, scelta_utente
+
+def somma(x,y): #creo la funzione somma
+    # somma = x + y non necessario: basta il return
+    return x + y
+
+def divisione(x,y):
+    #divisione = x / y
+    if y > 0: #importante! il programma darebbe errore
+        return x / y 
+    else:
+        print ("operazione non valida")
+
+def moltiplicazione(x,y):    
+   # moltiplicazione = x * y
+    return x * y
+
+def sottrazione(x,y):
+    # sottrazione = x - y
+    return x - y
+
+while True:
+    (x, y, scelta_utente) = menu_scelta () #finchè i dati inseriti dall'utente rientrano tra i parametri stabiliti nel menù iniziale
+    if scelta_utente == "+":
+        print(f"{somma(x,y)}")
+    elif scelta_utente == "-":
+        print(f"{sottrazione(x,y)}")
+    elif scelta_utente == "*":
+         print(f"{moltiplicazione(x,y)}")
+    elif scelta_utente:
+        print(f"{divisione(x,y)}")
+    else:
+        print("operazione non valida, riprova!")
+  
+ # Richiedi se continuare
+    risposta = input("Vuoi effettuare un'altra operazione? (Y/n): ").lower() #input(.lower). scelta y/n deve essere dentro stringa input.
+    if risposta != "y": # devo dare una variabile alla scelta dell'utente
+        print("Arrivederci!")
+        break
