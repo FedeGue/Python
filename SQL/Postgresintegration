@@ -1,0 +1,16 @@
+import psycopg
+
+with psycopg.connect("dbname=HistoryTest user=postgres password=password host=localhost port=5433") as con:
+
+#mi conviene usare questo approccio (stringa di connessione) piuttosto che il metodo a parole chiave.
+    with con.cursor() as cur:
+
+        cur.execute ("""
+                INSERT INTO kings (person_id, title_kingdom, kingdom, startreign, endreign)
+                VALUES (%s, %s, %s, %s, %s)""", 
+                (4, "Felipe III", "Nápoles", 1621, 1665))
+
+# cur.fetchone() non è necessario perchè si usa per le chiamate di SELECT... mi basta chiamare il con.commit()
+
+# cur.close() non devo chiuderlo perchè ci pensa il with con. 
+    con.commit()
